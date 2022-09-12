@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Union
 
-from marshmallow import ValidationError  # type: ignore
+from marshmallow import ValidationError # type: ignore
 
 from config import COMMANDS
 
@@ -14,7 +14,7 @@ class Commands:
     value2: Union[str, int]
 
     def __validate(self) -> None:
-        """Validate fields and concatenate commands name with '_'"""
+        """Проверка полей и объединение команд"""
         if self.cmd1 not in COMMANDS:
             raise ValidationError(f'Команда прошла как cmd1 ({self.cmd1}) недопустимая команда. '
                                   f'Только {", ".join(COMMANDS)} допустимый')
@@ -23,4 +23,4 @@ class Commands:
                                   f'Только {", ".join(COMMANDS)} допустимый')
 
 
-CommandsSchema = marshmallow_dataclass.class_schema(Commands)  # type: ignore
+CommandsSchema = marshmallow_dataclass.class_schema(Commands) # type: ignore
