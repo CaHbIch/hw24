@@ -1,5 +1,5 @@
 import re
-from typing import Iterator, List, Iterable, Set, Union, Any
+from typing import Iterator, List, Iterable, Union
 
 
 class Search:
@@ -34,7 +34,7 @@ class Search:
 
     def unique(self: Iterator) -> Iterable:
         """Возвращать только уникальные строки"""
-        return list(set(self))
+        return set(self)
 
     def regex(self: Iterator, expression: str) -> Iterable:
         """Фильтровать данные с переданным регулярным выражением"""
