@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Union
-
-from marshmallow import ValidationError # type: ignore
+import marshmallow_dataclass
+from marshmallow import ValidationError  # type: ignore
 
 from config import COMMANDS
 
@@ -23,4 +23,4 @@ class Commands:
                                   f'Только {", ".join(COMMANDS)} допустимый')
 
 
-CommandsSchema = marshmallow_dataclass.class_schema(Commands) # type: ignore
+CommandsSchema = marshmallow_dataclass.class_schema(Commands)  # type: ignore

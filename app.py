@@ -1,6 +1,6 @@
 import os
 
-from marshmallow.exceptions import ValidationError # type: ignore
+from marshmallow.exceptions import ValidationError  # type: ignore
 from flask import Flask, request, abort
 
 from classes.command import Commands, CommandsSchema
@@ -10,10 +10,13 @@ from config import DATA_DIR
 app = Flask(__name__)
 
 
-@app.route("/perform_query/", methods=['POST'])
+@app.route("/perform_query/", methods=['GET', 'POST'])
 def perform_query():  # type: ignore
     try:
-        commands: Commands = CommandsSchema().load(request.json)
+        if request.method == 'GET':
+            commands: Commands = CommandsSchema().load(request.args)
+        else:
+            commands: Commands = CommandsSchema().load(request.json)
         if not os.path.exists(DATA_DIR):
             raise FileNotFoundError('Передано неверное имя файла')
 
